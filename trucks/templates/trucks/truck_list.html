@@ -1,1 +1,54 @@
-<h1>Hello</h1>
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <form method="POST" action="{% url 'trucks:index' %}">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <td>бортовой номер</td>
+                <td>модель</td>
+                <td>макс.грузоподъёмность</td>
+                <td>текущий вес</td>
+                <td>перегруз, %</td>
+                <td>координаты разгрузки(x y)</td>
+            </thead>
+            <tbody>
+                {% for truck in trucks %}
+                <tr>
+                    <td>{{truck.board_number}}</td>
+                    <td>{{truck.model}}</td>
+                    <td>{{truck.max_capacity}}</td>
+                    <td>{{truck.load_weight}}</td>
+                    <td>{{truck.overload_percent|floatformat:3}}</td>
+                    <td>
+                        <input type="text" 
+                        name="coords_{{ truck.id }}" 
+                        value="{{ truck.unloading_x }} {{ truck.unloading_y }}"
+                        placeholder="Введите координаты (X Y)">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit">Рассчитать</button>
+        <table>
+            <thead>
+                <td>Название склада</td>
+                <td>Объём до разгрузки, т</td>
+                <td>Объём после разгрузки, т</td>
+                <td>Качественные хар-ки после разгрузки</td>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ polygon.name|default:"Склад" }}</td>
+                    <td>{{ polygon.initial_volume|default:"900" }}</td>
+                    <td>{{ polygon.current_volume|default:"900" }}</td>
+                    <td>SiO₂: {{ polygon.silica_content|floatformat:2|default:"0" }}%, 
+                        Fe: {{ polygon.iron_content|floatformat:2|default:"0" }}%</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>
