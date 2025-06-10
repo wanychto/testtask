@@ -1,0 +1,33 @@
+table.table1{
+    border-collapse: collapse;
+    border: 1px solid grey;
+    width: 65%;
+    height: 100px;
+    margin: auto;
+}
+table.table1 thead {
+    background-color:rgb(136, 138, 247);
+} 
+table.table1 tbody{
+    background-color:rgb(210, 210, 255);
+}
+table.table2{
+    border-collapse: collapse;
+    width: 50%;
+    height: 150px;
+    background-color: rgb(160, 198, 233);
+    border: 1.5px solid rgb(0, 0, 0);
+    text-align: center;
+    margin: auto;
+
+}
+table.table2 td{
+    border: 0;
+}
+button.btn1{
+    background-color: lightblue;
+    height: 30px;
+    width: 90px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
