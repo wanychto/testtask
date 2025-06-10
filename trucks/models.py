@@ -37,8 +37,6 @@ class Polygon(models.Model):
 
 class Uploading(models.Model):
     truck_num = models.ForeignKey("Truck", on_delete=models.CASCADE)
-    #volume = models.FloatField()
-    # success = models.BooleanField(default=False)
     x_coord = models.FloatField(help_text="Координата точки разгрузки x")
     y_coord = models.FloatField(help_text="Координата точки разгрузки y")
     amount = models.IntegerField(help_text="Количество разгруженной руды")

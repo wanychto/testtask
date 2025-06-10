@@ -6,4 +6,5 @@ app_name = 'trucks'
 urlpatterns = [
     path('', views.index, name='index'),
     path('', views.truck_list, name="truck_list"),
+    path('reset/', views.reset_data, name='reset_data'),
 ]

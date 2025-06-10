@@ -1,17 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
-<head></head>
+<head ><link rel="stylesheet" href="{% static 'trucks/styles.css' %}"></head>
 <body>
     <form method="POST" action="{% url 'trucks:index' %}">
         {% csrf_token %}
-        <table>
+        <table class="table1">
             <thead>
-                <td>бортовой номер</td>
-                <td>модель</td>
-                <td>макс.грузоподъёмность</td>
-                <td>текущий вес</td>
-                <td>перегруз, %</td>
-                <td>координаты разгрузки(x y)</td>
+                <tr>
+                    <td>бортовой номер</td>
+                    <td>модель</td>
+                    <td>макс.грузоподъёмность</td>
+                    <td>текущий вес</td>
+                    <td>перегруз, %</td>
+                    <td>координаты разгрузки(x y)</td>
+                </tr>
             </thead>
             <tbody>
                 {% for truck in trucks %}
@@ -31,13 +34,17 @@
                 {% endfor %}
             </tbody>
         </table>
-        <button type="submit">Рассчитать</button>
-        <table>
+        <div style="text-align: center"> 
+        <button class="btn1" type="submit">Рассчитать</button>
+        </div>
+        <table class="table2">
             <thead>
-                <td>Название склада</td>
-                <td>Объём до разгрузки, т</td>
-                <td>Объём после разгрузки, т</td>
-                <td>Качественные хар-ки после разгрузки</td>
+                <tr>
+                    <td>Название склада</td>
+                    <td>Объём до разгрузки, т</td>
+                    <td>Объём после разгрузки, т</td>
+                    <td>Качественные хар-ки после разгрузки</td>
+                </tr>
             </thead>
             <tbody>
                 <tr>
@@ -50,5 +57,19 @@
             </tbody>
         </table>
     </form>
+    <form method="POST" action="{% url 'trucks:reset_data' %}">
+        {% csrf_token %}
+        <style>
+            button.btn-test {
+                background: salmon;
+                color: black;
+                padding: 10px ;
+                border: 1,5px solid black;
+                margin-top: 40px;
+                margin-bottom: 25px;
+            }
+        </style>
+        <button class="btn-test" type="submit"> Сбросить все данные</button>
+    </form> 
 </body>
 </html>
